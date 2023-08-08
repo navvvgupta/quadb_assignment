@@ -4,21 +4,21 @@ import axios from 'axios'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 export const Header = (props) => {
     const [assets, setAssets] = useState([]);
-    const fetchMessDetails = async () => {
+    const fetchFunc = async () => {
         try {
           const response = await axios.get(
-            "localhost:5000/fetch"
+            "http://localhost:5000/fetch"
           );
           setAssets(response.data);
-          console.log(assets);
         } 
         catch (error) {
           console.error("Error fetching mess details:", error);
         }
       };
       useEffect(() => {
-        fetchMessDetails();
+        fetchFunc();
       }, []);
+
     const [dropdownOpenCurrency, setDropdownOpenCurrency] = useState(false);
     const [dropdownOpenAsset, setDropdownOpenAsset] = useState(false);
     const [currency, setCurrency] = useState("INR");
@@ -87,12 +87,6 @@ export const Header = (props) => {
                                 <div class="text-nowrap d-inline-block color-white">Connect Telegram</div>
                             </div>
                         </a>
-                            {/* <div className="margin-10 d-inline-block">
-                                <label className="switch">
-                                    <input type="checkbox" checked={!props.isLightTheme} onChange={props.onThemeButtonClick} />
-                                    <span className="slider round"></span>
-                                </label>
-                            </div> */}
                     </div>
                 </div>
             </div>
